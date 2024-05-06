@@ -2,7 +2,7 @@ import asyncHandle from "../middleware/asyncHandle.js";
 import Product from "../models/productsModel.js";
 
 const getProducts = asyncHandle(async (req, res) => {
-  const pageSize = 8;
+  const pageSize = process.env.PAGINATION_LIMIT
   const page = Number(req.query.pageNumber) || 1;
 
   const keyword = req.query.keyword ? {name :{ $regex : req.query.keyword , $options:"i"}}:{}
